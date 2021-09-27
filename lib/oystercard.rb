@@ -1,7 +1,7 @@
 class Oystercard
 
     def initialize
-        @balance = 0
+        @balance = 50
         @MAX_CARD_LIMIT = 90
     end
 
@@ -13,6 +13,10 @@ class Oystercard
         else
             p "Maximum balance exceeded of £#{@MAX_CARD_LIMIT}"
         end
+    end
+
+    def deduct(fare)
+        return @balance -= fare
     end
 
 end
