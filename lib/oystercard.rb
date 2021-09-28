@@ -1,8 +1,8 @@
 class Oystercard
 
-  def initialize
-    @balance = 50
-    @MAX_CARD_LIMIT = 90
+  def initialize(start_balance, card_limit)
+    @balance = start_balance
+    @MAX_CARD_LIMIT = card_limit
     @card_in_use = false
   end
 
@@ -10,11 +10,8 @@ class Oystercard
   attr_reader :MAX_CARD_LIMIT
 
   def top_up(amount)
-    if @balance + amount < @MAX_CARD_LIMIT
-      @balance += amount
-    else
-      p "Maximum balance exceeded of £#{@MAX_CARD_LIMIT}"
-    end
+    raise "Maximum balance exceeded of £#{@MAX_CARD_LIMIT}" if @balance + amount >= @MAX_CARD_LIMIT
+    @balance += amount
   end
 
   def deduct(fare)
