@@ -6,7 +6,8 @@ class Oystercard
     @card_in_use = false
   end
 
-  attr_reader :balance, :MAX_CARD_LIMIT
+  attr_accessor :balance
+  attr_reader :MAX_CARD_LIMIT
 
   def top_up(amount)
     if @balance + amount < @MAX_CARD_LIMIT
@@ -25,6 +26,7 @@ class Oystercard
   end
 
   def touch_in
+    raise "Insufficient funds must have minimum £1 balance" if @balance < 1
     @card_in_use = true
   end
 

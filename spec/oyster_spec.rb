@@ -35,4 +35,9 @@ describe Oystercard do
     subject.touch_out()
     expect(subject).not_to be_in_journey
   end
+
+  it "Should have the minimum balance of £1 for a single journey" do
+    subject.balance = 0
+    expect{subject.touch_in}.to raise_error"Insufficient funds must have minimum £1 balance"
+  end
 end
