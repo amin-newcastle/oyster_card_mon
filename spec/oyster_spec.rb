@@ -3,7 +3,7 @@ require 'oystercard'
 describe Oystercard do
 
 before(:each) do 
-    @my_card = Oystercard.new(50, 90)
+    @my_card = Oystercard.new(50, 90, 1)
 end
 
   it "Should create a blank Oyster card" do
@@ -20,7 +20,7 @@ end
 
   it "Should deduct fare from Oystercard" do
     fare = 10
-    expect(@my_card.deduct(fare)).to eq(@my_card.balance)
+    expect(@my_card.send(:deduct, fare)).to eq(@my_card.balance)
   end
 
   it "Should check the state of the Oystercard in journey" do
@@ -41,5 +41,9 @@ end
   it "Should have the minimum balance of £1 for a single journey" do
     @my_card.balance = 0
     expect{@my_card.touch_in}.to raise_error"Insufficient funds must have minimum £1 balance"
+  end
+
+  it "Should deduct the minimum fare of £1 from the card when touched out" do
+    expect {@my_card.touch_out}.to change{@my_card.balance}.by(-@my_card.minimum_fare)
   end
 end
