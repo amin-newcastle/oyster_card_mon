@@ -1,13 +1,14 @@
 class Oystercard
 
-  def initialize(start_balance, card_limit)
+  def initialize(start_balance, card_limit,minimum_fare)
     @balance = start_balance
     @MAX_CARD_LIMIT = card_limit
     @card_in_use = false
+    @minimum_fare = minimum_fare
     @entry_station = nil
   end
 
-  attr_accessor :balance, :entry_station
+  attr_accessor :balance, :entry_station, :minimum_fare
   attr_reader :MAX_CARD_LIMIT
 
   def top_up(amount)
@@ -30,6 +31,7 @@ class Oystercard
   end
 
   def touch_out
+    deduct(@minimum_fare)
     @card_in_use = false
   end
 
