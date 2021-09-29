@@ -4,9 +4,10 @@ class Oystercard
     @balance = start_balance
     @MAX_CARD_LIMIT = card_limit
     @card_in_use = false
+    @entry_station = nil
   end
 
-  attr_accessor :balance
+  attr_accessor :balance, :entry_station
   attr_reader :MAX_CARD_LIMIT
 
   def top_up(amount)
@@ -22,7 +23,8 @@ class Oystercard
     @card_in_use
   end
 
-  def touch_in
+  def touch_in(entry_station)
+    @entry_station = entry_station
     raise "Insufficient funds must have minimum £1 balance" if @balance < 1
     @card_in_use = true
   end
