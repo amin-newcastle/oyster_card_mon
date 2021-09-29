@@ -1,6 +1,6 @@
 class Oystercard
 
-  def initialize(start_balance, card_limit)
+  def initialize(start_balance, card_limit, minimum_fare)
     @balance = start_balance
     @MAX_CARD_LIMIT = card_limit
     @card_in_use = false
@@ -18,6 +18,7 @@ class Oystercard
   def deduct(fare)
     return @balance -= fare
   end
+  private :deduct
 
   def in_journey?
     @card_in_use
@@ -30,6 +31,7 @@ class Oystercard
   end
 
   def touch_out
+    deduct(@minimum_fare)
     @card_in_use = false
   end
 

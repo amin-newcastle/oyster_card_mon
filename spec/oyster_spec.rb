@@ -46,4 +46,8 @@ let(:my_card) { Oystercard.new(50, 90) }
     my_card.touch_in(station)
     expect(my_card.entry_station).to eq(station)
   end
+
+  it "Should deduct the minimum fare of £1 from the card when touched out" do
+    expect {@my_card.touch_out}.to change{@my_card.balance}.by(-@my_card.minimum_fare)
+  end
 end
