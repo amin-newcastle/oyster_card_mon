@@ -63,12 +63,12 @@ describe Oystercard do
         end
     end
 
-    describe "#touch_out" do
+    describe "#record_journey" do
         it "Should show an empty list of journeys" do
             expect(my_card.record_journey).to eq (my_card.journey_history)
         end
 
-        it "Should show an empty list of journeys" do
+        it "Should show entries of journey history in list the list of journeys" do
             my_card.touch_in("Newcastle")
             my_card.touch_out("Kings-Cross")
             expect(my_card.record_journey).to eq (my_card.journey_history)
