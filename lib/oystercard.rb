@@ -19,6 +19,7 @@ class Oystercard
   def deduct(fare)
     return @balance -= fare
   end
+  private :deduct
 
   def in_journey?
     @card_in_use

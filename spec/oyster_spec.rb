@@ -19,7 +19,7 @@ let(:my_card) { Oystercard.new(50, 90, 1) }
 
   it "Should deduct fare from Oystercard" do
     fare = 10
-    expect(my_card.deduct(fare)).to eq(my_card.balance)
+    expect(my_card.send(:deduct, fare)).to eq(my_card.balance)
   end
 
   it "Should check the state of the Oystercard in journey" do
